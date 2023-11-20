@@ -77,7 +77,7 @@ export const deleteUser = async (
     return res.sendStatus(400);
   }
 };
-export const genrateUser = async (
+export const generateUser = async (
   req: express.Request,
   res: express.Response
 ) => {
@@ -97,6 +97,7 @@ export const genrateUser = async (
     return res.status(201).json(user);
   } catch (error) {}
 };
+
 export const updateUser = async (
   req: express.Request,
   res: express.Response

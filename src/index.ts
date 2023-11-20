@@ -6,8 +6,8 @@ import compression from "compression";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import router from "./router";
-
+import Users from "./router/users";
+import Teams from "./router/teams";
 dotenv.config();
 
 const app = express();
@@ -24,10 +24,13 @@ app.use(bodyParser.json());
 
 const server = http.createServer(app);
 
-server.listen(8080);
+server.listen(8080, () => {
+  console.log("Sever is running on port 8080");
+});
 
 mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGO_URI!);
 mongoose.connection.on("error", (error: Error) => console.log(error));
 
-app.use("/", router());
+app.use("/", Users);
+app.use("/", Teams);
